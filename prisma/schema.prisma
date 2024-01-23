@@ -16,3 +16,9 @@ model product {
   description String
   qty         Int
 }
+
+model jasa {
+  id          Int    @id() @default(autoincrement())
+  name        String
+  description String
+}
