@@ -27,4 +27,20 @@ export class JasaService {
       },
     });
   }
+
+  async updateJasa(
+    id: string,
+    name: string,
+    description: string,
+  ): Promise<JasaModel> {
+    return await this.prisma.jasa.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        name,
+        description,
+      },
+    });
+  }
 }
