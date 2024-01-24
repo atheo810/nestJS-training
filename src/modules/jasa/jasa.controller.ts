@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { JasaService } from './jasa.service';
 import { jasa as JasaModel } from '@prisma/client';
 
@@ -25,5 +33,12 @@ export class JasaController {
   async create(@Body() body: any): Promise<JasaModel> {
     const { name, description } = body;
     return this.jasaService.create(name, description);
+  }
+
+  @Put(':id')
+  @HttpCode(201)
+  async update(@Body() body: any, @Param('id') id: string): Promise<JasaModel> {
+    const { name, description } = body;
+    return this.jasaService.updateJasa(id, name, description);
   }
 }
