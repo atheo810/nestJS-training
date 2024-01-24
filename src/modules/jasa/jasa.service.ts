@@ -11,12 +11,20 @@ export class JasaService {
   }
 
   //   membuat function async create utnuk di panggil di controller
-  // async create(name: string, description: string) {
-  //   return await this.prisma.jasa.create({
-  //     data: {
-  //       name,
-  //       description,
-  //     },
-  //   });
-  // }
+  async create(name: string, description: string) {
+    return await this.prisma.jasa.create({
+      data: {
+        name,
+        description,
+      },
+    });
+  }
+
+  async getById(id: string): Promise<JasaModel> {
+    return await this.prisma.jasa.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+  }
 }
