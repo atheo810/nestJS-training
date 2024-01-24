@@ -20,6 +20,7 @@ export class JasaService {
     });
   }
 
+  // function byId
   async getById(id: string): Promise<JasaModel> {
     return await this.prisma.jasa.findUnique({
       where: {
@@ -28,6 +29,7 @@ export class JasaService {
     });
   }
 
+  // function update jasa
   async updateJasa(
     id: string,
     name: string,
@@ -40,6 +42,15 @@ export class JasaService {
       data: {
         name,
         description,
+      },
+    });
+  }
+
+  // delete function jasa
+  async remove(id: string) {
+    return await this.prisma.jasa.delete({
+      where: {
+        id: parseInt(id),
       },
     });
   }
