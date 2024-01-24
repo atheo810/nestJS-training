@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
@@ -35,10 +36,17 @@ export class JasaController {
     return this.jasaService.create(name, description);
   }
 
+  // function update jasa data
   @Put(':id')
   @HttpCode(201)
   async update(@Body() body: any, @Param('id') id: string): Promise<JasaModel> {
     const { name, description } = body;
     return this.jasaService.updateJasa(id, name, description);
+  }
+
+  @Delete(':id')
+  @HttpCode(200)
+  async delete(@Param('id') id: string): Promise<JasaModel> {
+    return this.jasaService.remove(id);
   }
 }
